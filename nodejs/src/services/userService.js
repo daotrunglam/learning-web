@@ -146,7 +146,7 @@ let deleteUser = (userId) => {
     });
     resolve({
       errCode: 0,
-      message: `The user is delete`,
+      errMessage: `The user is delete`,
     });
   });
 };
