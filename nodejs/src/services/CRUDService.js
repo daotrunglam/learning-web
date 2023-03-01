@@ -18,7 +18,7 @@ let createNewUser = async (data) => {
         gender: data.gender === "1" ? true : false,
         roleId: data.roleId,
       });
-      resolve("create new user succeed");
+      resolve("create new user succeed!");
     } catch (e) {
       reject(e);
     }
