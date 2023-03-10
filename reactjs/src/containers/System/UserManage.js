@@ -100,7 +100,7 @@ class UserManage extends Component {
 
   /**  lifecycle
    * Run component:
-   * 1. Run construtor -> init state
+   * 1. Run constructor -> init state
    * 2. Did mount (set state)
    * 3. Render
    * */
