@@ -5,9 +5,9 @@ import * as actions from "../../store/actions";
 import "./Login.scss";
 import { FormattedMessage } from "react-intl";
 import { handleLoginApi } from "../../services/userService";
-import Signup from "./Signup.js";
+import Login from "./Login";
 
-class Login extends Component {
+class Signup extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -27,43 +27,34 @@ class Login extends Component {
       password: event.target.value,
     });
   };
-  handleLogin = async () => {
-    this.setState({
-      errMessage: " ",
-    });
-    // console.log(
-    //   "username:",
-    //   this.state.username,
-    //   "password:",
-    //   this.state.password
-    // );
-    // console.log("all state:", this.state);
-    try {
-      let data = await handleLoginApi(this.state.username, this.state.password);
-      if (data && data.errCode !== 0) {
-        this.setState({
-          errMessage: data.message,
-        });
-      }
-      if (data && data.errCode === 0) {
-        this.props.userLoginSuccess(data.user);
-        // console.log("login succeeds");
-      }
-    } catch (error) {
-      if (error.response) {
-        if (error.response.data) {
-          this.setState({
-            errMessage: error.response.data.message,
-          });
-        }
-      }
-      // console.log(e);
-      // this.setState({
-      //   errMessage: e.message,
-      // });
-      console.log("bepcuanem", error.response);
-    }
-  };
+  // handleLogin = async () => {
+  //   this.setState({
+  //     errMessage: " ",
+  //   });
+
+  //   try {
+  //     let data = await handleLoginApi(this.state.username, this.state.password);
+  //     if (data && data.errCode !== 0) {
+  //       this.setState({
+  //         errMessage: data.message,
+  //       });
+  //     }
+  //     if (data && data.errCode === 0) {
+  //       this.props.userLoginSuccess(data.user);
+  //       // console.log("login succeeds");
+  //     }
+  //   } catch (error) {
+  //     if (error.response) {
+  //       if (error.response.data) {
+  //         this.setState({
+  //           errMessage: error.response.data.message,
+  //         });
+  //       }
+  //     }
+
+  //     console.log("bepcuanem", error.response);
+  //   }
+  // };
   handleShowHidePassword = () => {
     this.setState({
       isShowPassword: !this.state.isShowPassword,
@@ -76,7 +67,7 @@ class Login extends Component {
       <div className="login-background">
         <div className="login-container">
           <div className="login-content row">
-            <div className="col-12 login-text">Login</div>
+            <div className="col-12 login-text">Signup</div>
             <div className="col-12 form-group login-input">
               <label>Username</label>
               <input
@@ -88,12 +79,12 @@ class Login extends Component {
               />
             </div>
             <div className="col-12 form-group login-input">
-              <label>Password</label>
+              <label>Create password</label>
               <div className="custom-input-password">
                 <input
                   type={this.state.isShowPassword ? "text" : "password"}
                   className="form-control"
-                  placeholder="Password"
+                  placeholder="Create password"
                   onChange={(event) => this.handleOnChangePassword(event)}
                 />
                 <span onClick={() => this.handleShowHidePassword()}>
@@ -107,9 +98,27 @@ class Login extends Component {
                 </span>
               </div>
             </div>
-            <div className="col-12 text-right">
-              <span className="forgot-password">Forgot password?</span>
+            <div className="col-12 form-group login-input">
+              <label>Confirm password</label>
+              <div className="custom-input-password">
+                <input
+                  type={this.state.isShowPassword ? "text" : "password"}
+                  className="form-control"
+                  placeholder="Confirm password"
+                  onChange={(event) => this.handleOnChangePassword(event)}
+                />
+                <span onClick={() => this.handleShowHidePassword()}>
+                  <i
+                    className={
+                      this.state.isShowPassword
+                        ? "far fa-eye"
+                        : "far fa-eye-slash"
+                    }
+                  ></i>
+                </span>
+              </div>
             </div>
+
             <div className="col-12" style={{ color: "red" }}>
               {this.state.errMessage}
             </div>
@@ -120,14 +129,14 @@ class Login extends Component {
                   this.handleLogin();
                 }}
               >
-                Login
+                Signup
               </button>
             </div>
             <div className="col-12 text-center">
-              <span className="register-text">
-                Don't have an account? {}
+              <span className="forgot-password">
+                Already have an account? {}
                 <a href="#" className="link signup-link">
-                  Signup
+                  Login
                 </a>
               </span>
             </div>
@@ -161,4 +170,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);
