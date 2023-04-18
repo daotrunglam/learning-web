@@ -118,6 +118,7 @@ let createNewUser = (data) => {
         gender: data.gender,
         roleId: data.roleId,
         positionId: data.positionId,
+        image: data.avatar,
       });
       resolve({
         errCode: 0,
@@ -173,13 +174,13 @@ let updateUserData = async (data) => {
         user.gender = data.gender;
         user.positionId = data.positionId;
         user.roleId = data.roleId;
+        if (data.avatar) {
+          user.image = data.avatar;
+        }
+        user.image = data.avatar;
 
         await user.save();
-        // await db.User.save({
-        //   firstName: data.firstName,
-        //   lastName: data.lastName,
-        //   address: data.address,
-        // });
+
         resolve({
           errCode: 0,
           errMessage: "Update the user succeeds!",
