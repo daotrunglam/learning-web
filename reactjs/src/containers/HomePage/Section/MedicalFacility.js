@@ -59,6 +59,30 @@ class MedicalFacility extends Component {
                   Bệnh viện Trung ương Quân đội 108 8
                 </div>
               </div>
+              <div className="section-customize">
+                <div className="bg-image section-medical-facility" />
+                <div className="title-image">
+                  Bệnh viện Trung ương Quân đội 108 9
+                </div>
+              </div>
+              <div className="section-customize">
+                <div className="bg-image section-medical-facility" />
+                <div className="title-image">
+                  Bệnh viện Trung ương Quân đội 108 10
+                </div>
+              </div>
+              <div className="section-customize">
+                <div className="bg-image section-medical-facility" />
+                <div className="title-image">
+                  Bệnh viện Trung ương Quân đội 108 11
+                </div>
+              </div>
+              <div className="section-customize">
+                <div className="bg-image section-medical-facility" />
+                <div className="title-image">
+                  Bệnh viện Trung ương Quân đội 108 12
+                </div>
+              </div>
             </Slider>
           </div>
         </div>

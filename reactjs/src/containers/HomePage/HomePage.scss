@@ -16,6 +16,10 @@
     color: red !important // content: "\f100" !important;
 }
 
+.slick-disabled {
+    display: none !important;
+}
+
 .slick-next {
     border: 2px solid #d7d7d7 !important;
     right: -10px !important;
@@ -31,6 +35,10 @@
 .slick-next:before {
     font-family: "FontAwesome" !important;
     color: red !important // content: "\f101" !important;
+}
+
+.slick-disabled {
+    display: none !important;
 }
 
 .section-share {
@@ -69,7 +77,7 @@
                 }
 
                 &.section-outstanding-doctor {
-                    background-image: url('../../assets/outstanding-doctor/anh-dai-dien-bs.jpg');
+                    // background-image: url('../../assets/outstanding-doctor/anh-dai-dien-bs.jpg');
                     width: 120px;
                     height: 120px;
                     border-radius: 50%;

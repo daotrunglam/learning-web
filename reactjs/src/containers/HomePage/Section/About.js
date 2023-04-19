@@ -16,9 +16,9 @@ class About extends Component {
               height="400px"
               src="https://www.youtube.com/embed/z7S2iTWlShg"
               title="Quả dừa bé bằng quả cau"
-              frameborder="0"
+              // frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen
+              // allowfullscreen
             ></iframe>
           </div>
           <div className="content-center">
@@ -27,9 +27,9 @@ class About extends Component {
               height="400px"
               src="https://www.youtube.com/embed/PtWkpJr2ktw"
               title="Nem diễn hài"
-              frameborder="0"
+              // frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen
+              // allowfullscreen
             ></iframe>
           </div>
           <div className="content-right">
