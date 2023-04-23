@@ -38,8 +38,12 @@ app.use(function (req, res, next) {
 //config app
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json({ limit: "50mb" }));
-app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
+
+// server err max_allowed_packet: run SHOW VARIABLES LIKE "max_allowed_packet" trong sql tren db
+// sau do vao thu muc "C:\xampp\mysql\bin\my.ini" edit file my.ini
+// search max_allowed_packet change value
+app.use(bodyParser.json({ limit: "100mb" }));
+app.use(bodyParser.urlencoded({ limit: "100mb", extended: true }));
 
 viewEngine(app);
 initWebRoutes(app);

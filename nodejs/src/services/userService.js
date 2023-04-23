@@ -177,7 +177,7 @@ let updateUserData = async (data) => {
         if (data.avatar) {
           user.image = data.avatar;
         }
-        user.image = data.avatar;
+        // user.image = data.avatar;
 
         await user.save();
 
