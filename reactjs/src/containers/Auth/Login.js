@@ -27,6 +27,11 @@ class Login extends Component {
       password: event.target.value,
     });
   };
+  handleOnKeyDown = (event) => {
+    if (event.key === "Enter" || event.keyCode === 13) {
+      this.handleLogin();
+    }
+  };
   handleLogin = async () => {
     this.setState({
       errMessage: " ",
@@ -85,6 +90,7 @@ class Login extends Component {
                 placeholder="Email address or phone number"
                 value={this.state.username}
                 onChange={(event) => this.handleOnChangeUsername(event)}
+                onKeyDown={(event) => this.handleOnKeyDown(event)}
               />
             </div>
             <div className="col-12 form-group login-input">
@@ -95,6 +101,7 @@ class Login extends Component {
                   className="form-control"
                   placeholder="Password"
                   onChange={(event) => this.handleOnChangePassword(event)}
+                  onKeyDown={(event) => this.handleOnKeyDown(event)}
                 />
                 <span onClick={() => this.handleShowHidePassword()}>
                   <i

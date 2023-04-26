@@ -27,34 +27,39 @@ class Signup extends Component {
       password: event.target.value,
     });
   };
-  // handleLogin = async () => {
-  //   this.setState({
-  //     errMessage: " ",
-  //   });
+  handleOnKeyDown = (event) => {
+    if (event.key === "Enter" || event.keyCode === 13) {
+      this.handleSignup();
+    }
+  };
+  handleSignup = async () => {
+    this.setState({
+      errMessage: " ",
+    });
 
-  //   try {
-  //     let data = await handleLoginApi(this.state.username, this.state.password);
-  //     if (data && data.errCode !== 0) {
-  //       this.setState({
-  //         errMessage: data.message,
-  //       });
-  //     }
-  //     if (data && data.errCode === 0) {
-  //       this.props.userLoginSuccess(data.user);
-  //       // console.log("login succeeds");
-  //     }
-  //   } catch (error) {
-  //     if (error.response) {
-  //       if (error.response.data) {
-  //         this.setState({
-  //           errMessage: error.response.data.message,
-  //         });
-  //       }
-  //     }
+    //   try {
+    //     let data = await handleLoginApi(this.state.username, this.state.password);
+    //     if (data && data.errCode !== 0) {
+    //       this.setState({
+    //         errMessage: data.message,
+    //       });
+    //     }
+    //     if (data && data.errCode === 0) {
+    //       this.props.userLoginSuccess(data.user);
+    //       // console.log("login succeeds");
+    //     }
+    //   } catch (error) {
+    //     if (error.response) {
+    //       if (error.response.data) {
+    //         this.setState({
+    //           errMessage: error.response.data.message,
+    //         });
+    //       }
+    //     }
 
-  //     console.log("bepcuanem", error.response);
-  //   }
-  // };
+    //     console.log("bepcuanem", error.response);
+    //   }
+  };
   handleShowHidePassword = () => {
     this.setState({
       isShowPassword: !this.state.isShowPassword,
@@ -76,6 +81,7 @@ class Signup extends Component {
                 placeholder="Email address or phone number"
                 value={this.state.username}
                 onChange={(event) => this.handleOnChangeUsername(event)}
+                onKeyDown={(event) => this.handleOnKeyDown(event)}
               />
             </div>
             <div className="col-12 form-group login-input">
@@ -86,6 +92,7 @@ class Signup extends Component {
                   className="form-control"
                   placeholder="Create password"
                   onChange={(event) => this.handleOnChangePassword(event)}
+                  onKeyDown={(event) => this.handleOnKeyDown(event)}
                 />
                 <span onClick={() => this.handleShowHidePassword()}>
                   <i
@@ -126,7 +133,7 @@ class Signup extends Component {
               <button
                 className="btn-login"
                 onClick={() => {
-                  this.handleLogin();
+                  this.handleSignup();
                 }}
               >
                 Signup
