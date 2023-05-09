@@ -64,7 +64,13 @@ let saveDetailInfoDoctor = (inputData) => {
         !inputData.doctorId ||
         !inputData.contentHTML ||
         !inputData.contentMarkdown ||
-        !inputData.action
+        !inputData.action ||
+        !inputData.selectedPrice ||
+        !inputData.selectedPayment ||
+        !inputData.selectedProvince ||
+        !inputData.nameClinic ||
+        !inputData.addressClinic ||
+        !inputData.note
       ) {
         resolve({
           errCode: 1,
@@ -91,6 +97,35 @@ let saveDetailInfoDoctor = (inputData) => {
             await doctorMarkdown.save();
           }
         }
+
+        // upsert to Doctor_Info table
+        let doctorInfo = await db.Doctor_Info.findOne({
+          where: { doctorId: inputData.doctorId },
+          raw: false,
+        });
+        if (doctorInfo) {
+          // update
+          doctorId.doctorId = inputData.doctorId;
+          doctorInfo.priceId = inputData.selectedPrice;
+          doctorInfo.paymentId = inputData.selectedPayment;
+          doctorInfo.provinceId = inputData.selectedProvince;
+          doctorInfo.addressClinic = inputData.addressClinic;
+          doctorInfo.nameClinic = inputData.nameClinic;
+          doctorInfo.note = inputData.note;
+          await doctorInfo.save();
+        } else {
+          // create
+          await db.Markdown.create({
+            doctorId: inputData.doctorId,
+            priceId: inputData.selectedPrice,
+            paymentId: inputData.selectedPayment,
+            provinceId: inputData.selectedProvince,
+            addressClinic: inputData.addressClinic,
+            nameClinic: inputData.nameClinic,
+            note: inputData.note,
+          });
+        }
+
         resolve({
           errCode: 0,
           errMessage: "Save info doctor succeed!",
