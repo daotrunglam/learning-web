@@ -115,7 +115,7 @@ let saveDetailInfoDoctor = (inputData) => {
           await doctorInfo.save();
         } else {
           // create
-          await db.Markdown.create({
+          await db.Doctor_Info.create({
             doctorId: inputData.doctorId,
             priceId: inputData.selectedPrice,
             paymentId: inputData.selectedPayment,
