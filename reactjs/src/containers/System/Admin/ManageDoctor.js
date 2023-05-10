@@ -157,17 +157,63 @@ class ManageDoctor extends Component {
     });
     // console.log("nem check state contentMarkdown: ", this.state);
   };
+
   handleChangeSelect = async (selectedDoctor) => {
     this.setState({ selectedDoctor });
-
+    let { listPrice, listPayment, listProvince } = this.state;
     let res = await getDetailInfoDoctor(selectedDoctor.value);
     if (res && res.errCode === 0 && res.data && res.data.Markdown) {
       let markdown = res.data.Markdown;
+
+      let priceId = "",
+        paymentId = "",
+        provinceId = "",
+        addressClinic = "",
+        nameClinic = "",
+        note = "",
+        selectedPrice = "",
+        selectedPayment = "",
+        selectedProvince = "";
+
+      if (res.data.Doctor_Info) {
+        addressClinic = res.data.Doctor_Info.addressClinic;
+        nameClinic = res.data.Doctor_Info.nameClinic;
+        note = res.data.Doctor_Info.note;
+
+        priceId = res.data.Doctor_Info.priceId;
+        paymentId = res.data.Doctor_Info.paymentId;
+        provinceId = res.data.Doctor_Info.provinceId;
+
+        selectedPrice = listPrice.find((item) => {
+          return item && item.value === priceId;
+        });
+        selectedPayment = listPayment.find((item) => {
+          return item && item.value === paymentId;
+        });
+        selectedProvince = listProvince.find((item) => {
+          return item && item.value === provinceId;
+        });
+        console.log(
+          "nem find array: ",
+          selectedPrice,
+          selectedPayment,
+          selectedProvince
+        );
+      }
+
       this.setState({
         contentHTML: markdown.contentHTML,
         contentMarkdown: markdown.contentMarkdown,
         description: markdown.description,
         hasOldData: true,
+
+        addressClinic: addressClinic,
+        nameClinic: nameClinic,
+        note: note,
+
+        selectedPrice: selectedPrice,
+        selectedPayment: selectedPayment,
+        selectedProvince: selectedProvince,
       });
     } else {
       this.setState({
@@ -175,6 +221,10 @@ class ManageDoctor extends Component {
         contentMarkdown: "",
         description: "",
         hasOldData: false,
+
+        addressClinic: "",
+        nameClinic: "",
+        note: "",
       });
     }
     // console.log(`Option selected:`, selectedDoctor);
@@ -199,7 +249,7 @@ class ManageDoctor extends Component {
   };
   render() {
     let { hasOldData } = this.state;
-    // console.log("nem check: ", this.state);
+    console.log("nem check state: ", this.state);
     return (
       <div className="manage-doctor-container">
         <div className="manage-title-doctor">
