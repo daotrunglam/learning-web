@@ -1,6 +1,6 @@
 import db from "../models/index";
 require("dotenv").config();
-import _ from "lodash";
+import _, { reject } from "lodash";
 
 const MAX_NUMBER_SCHEDULE = process.env.MAX_NUMBER_SCHEDULE;
 let getTopDoctorHome = (limitInput) => {
@@ -105,7 +105,7 @@ let saveDetailInfoDoctor = (inputData) => {
         });
         if (doctorInfo) {
           // update
-          doctorId.doctorId = inputData.doctorId;
+          doctorInfo.doctorId = inputData.doctorId;
           doctorInfo.priceId = inputData.selectedPrice;
           doctorInfo.paymentId = inputData.selectedPayment;
           doctorInfo.provinceId = inputData.selectedProvince;
@@ -291,6 +291,53 @@ let getScheduleByDate = (doctorId, date) => {
     }
   });
 };
+let getExtraInfoDoctorById = (doctorId) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      if (!doctorId) {
+        resolve({
+          errCode: 1,
+          errMessage: "Missing required parameters",
+        });
+      } else {
+        let data = await db.Doctor_Info.findOne({
+          where: {
+            doctorId: doctorId,
+          },
+          attributes: {
+            exclude: ["id", "doctorId"],
+          },
+          include: [
+            {
+              model: db.Allcode,
+              as: "priceTypeData",
+              attributes: ["valueVi", "valueEn"],
+            },
+            {
+              model: db.Allcode,
+              as: "paymentTypeData",
+              attributes: ["valueVi", "valueEn"],
+            },
+            {
+              model: db.Allcode,
+              as: "provinceTypeData",
+              attributes: ["valueVi", "valueEn"],
+            },
+          ],
+          raw: false,
+          nest: true,
+        });
+        if (!data) data = {};
+        resolve({
+          errCode: 0,
+          data: data,
+        });
+      }
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
 
 module.exports = {
   getTopDoctorHome: getTopDoctorHome,
@@ -299,4 +346,5 @@ module.exports = {
   getDetailDoctorById: getDetailDoctorById,
   bulkCreateSchedule: bulkCreateSchedule,
   getScheduleByDate: getScheduleByDate,
+  getExtraInfoDoctorById: getExtraInfoDoctorById,
 };

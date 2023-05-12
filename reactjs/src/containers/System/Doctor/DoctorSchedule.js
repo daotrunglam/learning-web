@@ -71,7 +71,7 @@ class DoctorSchedule extends Component {
   async componentDidUpdate(prevProps, prevState, snapshot) {
     if (this.props.language !== prevProps.language) {
       let allDays = this.getArrDays(this.props.language);
-      console.log("nem check allDays: ", allDays);
+      // console.log("nem check allDays: ", allDays);
       this.setState({
         allDays: allDays,
       });
@@ -99,7 +99,7 @@ class DoctorSchedule extends Component {
         });
       } else {
       }
-      console.log("check res schedule from react: ", res);
+      // console.log("check res schedule from react: ", res);
     }
   };
 

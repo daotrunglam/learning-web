@@ -193,12 +193,12 @@ class ManageDoctor extends Component {
         selectedProvince = listProvince.find((item) => {
           return item && item.value === provinceId;
         });
-        console.log(
-          "nem find array: ",
-          selectedPrice,
-          selectedPayment,
-          selectedProvince
-        );
+        // console.log(
+        //   "nem find array: ",
+        //   selectedPrice,
+        //   selectedPayment,
+        //   selectedProvince
+        // );
       }
 
       this.setState({
@@ -249,7 +249,7 @@ class ManageDoctor extends Component {
   };
   render() {
     let { hasOldData } = this.state;
-    console.log("nem check state: ", this.state);
+    // console.log("nem check state: ", this.state);
     return (
       <div className="manage-doctor-container">
         <div className="manage-title-doctor">
