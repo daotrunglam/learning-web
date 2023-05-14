@@ -34,7 +34,7 @@ let getBodyHTMLEmail = (dataSend) => {
     
         <p>Nếu các thông tin trên là chính xác, vui lòng click vào đường link bên dưới để hoàn tất thủ tục đặt lịch khám bệnh.</p>
         <div>
-        <a href=${dataSend.redirectLink} target="_blank">Click here</a>
+        <a href=${dataSend.redirectLink} target="_blank">${dataSend.redirectLink}</a>
         </div>
         <div>Xin chân thành cảm ơn!</div>
           `;
@@ -49,7 +49,7 @@ let getBodyHTMLEmail = (dataSend) => {
     
         <p>If the above information is correct, please click on the link below to complete the procedure to book an appointment.</p>
         <div>
-        <a href=${dataSend.redirectLink} target="_blank">Click here</a>
+        <a href=${dataSend.redirectLink} target="_blank">${dataSend.redirectLink}</a>
         </div>
         <div>Sincerely thank!</div>
           `;
