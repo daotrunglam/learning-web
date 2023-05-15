@@ -1,6 +1,6 @@
 import db from "../models/index";
 require("dotenv").config();
-import _, { reject } from "lodash";
+import _ from "lodash";
 import emailService from "./emailService";
 import { v4 as uuidv4 } from "uuid";
 
