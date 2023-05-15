@@ -7,7 +7,7 @@
     background: #fff !important;
 
     &:hover {
-        background: #d7d7d7 !important;
+        background: #eceaea !important;
     }
 }
 
@@ -28,7 +28,7 @@
     background: #fff !important;
 
     &:hover {
-        background: #d7d7d7 !important;
+        background: #eceaea !important;
     }
 }
 
@@ -59,17 +59,14 @@
         .section-customize {
             .bg-image {
                 height: 150px;
-                margin-left: 6px;
-                width: 260px;
-
+                width: 278px;
                 background-position: center center;
                 background-repeat: no-repeat;
                 background-size: cover;
                 background-color: #eee;
-                border: 1px solid blueviolet;
 
                 &.section-specialty {
-                    background-image: url('../../assets/specialty/cot-song.jpg');
+                    // background-image: url('../../assets/specialty/cot-song.jpg');
                 }
 
                 &.section-medical-facility {
