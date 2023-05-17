@@ -179,7 +179,7 @@ class ManageDoctor extends Component {
 
   handleChangeSelect = async (selectedDoctor) => {
     this.setState({ selectedDoctor });
-    let { listPrice, listPayment, listProvince } = this.state;
+    let { listPrice, listPayment, listProvince, listSpecialty } = this.state;
     let res = await getDetailInfoDoctor(selectedDoctor.value);
     if (res && res.errCode === 0 && res.data && res.data.Markdown) {
       let markdown = res.data.Markdown;
@@ -187,12 +187,14 @@ class ManageDoctor extends Component {
       let priceId = "",
         paymentId = "",
         provinceId = "",
+        specialtyId = "",
         addressClinic = "",
         nameClinic = "",
         note = "",
         selectedPrice = "",
         selectedPayment = "",
-        selectedProvince = "";
+        selectedProvince = "",
+        selectedSpecialty = "";
 
       if (res.data.Doctor_Info) {
         addressClinic = res.data.Doctor_Info.addressClinic;
@@ -202,6 +204,7 @@ class ManageDoctor extends Component {
         priceId = res.data.Doctor_Info.priceId;
         paymentId = res.data.Doctor_Info.paymentId;
         provinceId = res.data.Doctor_Info.provinceId;
+        specialtyId = res.data.Doctor_Info.specialtyId;
 
         selectedPrice = listPrice.find((item) => {
           return item && item.value === priceId;
@@ -211,6 +214,9 @@ class ManageDoctor extends Component {
         });
         selectedProvince = listProvince.find((item) => {
           return item && item.value === provinceId;
+        });
+        selectedSpecialty = listSpecialty.find((item) => {
+          return item && item.value === specialtyId;
         });
       }
 
@@ -227,6 +233,7 @@ class ManageDoctor extends Component {
         selectedPrice: selectedPrice,
         selectedPayment: selectedPayment,
         selectedProvince: selectedProvince,
+        selectedSpecialty: selectedSpecialty,
       });
     } else {
       this.setState({
@@ -238,6 +245,10 @@ class ManageDoctor extends Component {
         addressClinic: "",
         nameClinic: "",
         note: "",
+        selectedPayment: "",
+        selectedPrice: "",
+        selectedProvince: "",
+        selectedSpecialty: "",
       });
     }
     // console.log(`Option selected:`, selectedDoctor);
