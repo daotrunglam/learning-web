@@ -11,7 +11,7 @@ module.exports = {
           firstName: "Nem",
           lastName: "Mèo",
           address: "USA",
-          gender: "1",
+          gender: "F",
           createdAt: new Date(),
           updatedAt: new Date(),
         },

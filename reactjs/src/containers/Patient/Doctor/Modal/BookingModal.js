@@ -4,12 +4,12 @@ import { FormattedMessage } from "react-intl";
 import "./BookingModal.scss";
 import { Modal } from "reactstrap";
 import ProfileDoctor from "../ProfileDoctor";
-import _, { times } from "lodash";
+import _ from "lodash";
 import DatePicker from "../../../../components/Input/DatePicker";
 import * as actions from "../../../../store/actions";
 import { LANGUAGES } from "../../../../utils";
 import Select from "react-select";
-import { postPatientBookingAppointment } from "../../../../services/userService";
+import { postPatientBookAppointment } from "../../../../services/userService";
 import { toast } from "react-toastify";
 import moment from "moment";
 
@@ -23,15 +23,15 @@ class BookingModal extends Component {
       address: "",
       reason: "",
       birthday: "",
-      selectedGender: "",
       genders: "",
+      selectedGender: "",
       doctorId: "",
       timeType: "",
     };
   }
 
   async componentDidMount() {
-    this.props.getGender();
+    this.props.getGenders();
   }
   buildDataGender = (data) => {
     let result = [];
@@ -130,13 +130,15 @@ class BookingModal extends Component {
     let date = new Date(this.state.birthday).getTime();
     let timeString = this.buildTimeBooking(this.props.dataTime);
     let doctorName = this.buildDoctorName(this.props.dataTime);
-    let res = await postPatientBookingAppointment({
+
+    let res = await postPatientBookAppointment({
       fullName: this.state.fullName,
       phoneNumber: this.state.phoneNumber,
       email: this.state.email,
       address: this.state.address,
       reason: this.state.reason,
-      date: date,
+      date: this.props.dataTime.date,
+      birthday: date,
       selectedGender: this.state.selectedGender.value,
       doctorId: this.state.doctorId,
       timeType: this.state.timeType,
@@ -153,11 +155,13 @@ class BookingModal extends Component {
   };
 
   render() {
+    console.log("nem check booking modal: ", this.state);
     let { isOpenModal, closeBookingClose, dataTime } = this.props;
     let doctorId = "";
     if (dataTime && !_.isEmpty(dataTime)) {
       doctorId = dataTime.doctorId;
     }
+
     // let doctorId = dataTime && !_.isEmpty(dataTime) ? dataTime.doctorId : "";
 
     return (
@@ -266,7 +270,7 @@ class BookingModal extends Component {
                     <FormattedMessage id="patient.booking-modal.gender" />
                   </label>
                   <Select
-                    value={this.state.selectedDoctor}
+                    value={this.state.selectedGender}
                     onChange={this.handleChangeSelect}
                     options={this.state.genders}
                   />
@@ -303,7 +307,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getGender: () => dispatch(actions.fetchGenderStart()),
+    getGenders: () => dispatch(actions.fetchGenderStart()),
   };
 };
 
