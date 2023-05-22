@@ -7,7 +7,6 @@ import { FormattedMessage } from "react-intl";
 import { LANGUAGES } from "../../../utils";
 import { getScheduleDoctorByDate } from "../../../services/userService";
 import BookingModal from "./Modal/BookingModal";
-
 class DoctorSchedule extends Component {
   constructor(props) {
     super(props);
