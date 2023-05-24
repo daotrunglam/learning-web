@@ -50,8 +50,8 @@ initWebRoutes(app);
 
 connectDB();
 
-let port = process.env.PORT || 3030;
-//Port === undefined => port = 3030
+let port = process.env.PORT || 6969;
+//Port === undefined => port = 6969
 
 app.listen(port, () => {
   //callback

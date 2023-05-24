@@ -1,5 +1,3 @@
-# syntax=docker/dockerfile:1
-
 FROM node:14-alpine
 #chuan bi moi truong nodejs, version node14/alpine
 

@@ -48,8 +48,8 @@ app.use(_bodyParser["default"].urlencoded({
 (0, _viewEngine["default"])(app);
 (0, _web["default"])(app);
 (0, _connectDB["default"])();
-var port = process.env.PORT || 3030;
-//Port === undefined => port = 3030
+var port = process.env.PORT || 6969;
+//Port === undefined => port = 6969
 
 app.listen(port, function () {
   //callback
