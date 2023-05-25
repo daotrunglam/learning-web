@@ -1,9 +1,15 @@
+# dependencies
 /node_modules
+
 /vendor
 /.idea
 .idea/
-.env
-package-lock.json
+
 
 # production
-/build
+build
+
+# misc
+.env
+.DS_Store
+package-lock.json

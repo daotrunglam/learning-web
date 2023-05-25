@@ -16,4 +16,4 @@ RUN npm run build-src
 CMD [ "npm", "run", "build"]
 
 # docker build --tag node-docker .
-# docker run -p 3030:3030 -d node-docker
+# docker run -p 8080:8080 -d node-docker
