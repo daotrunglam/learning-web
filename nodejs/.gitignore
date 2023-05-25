@@ -4,3 +4,6 @@
 .idea/
 .env
 package-lock.json
+
+# production
+/build
