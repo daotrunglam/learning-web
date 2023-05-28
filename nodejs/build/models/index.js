@@ -6,7 +6,7 @@ var path = require("path");
 var Sequelize = require("sequelize");
 var basename = path.basename(__filename);
 var env = process.env.NODE_ENV || "development";
-// const config = require(__dirname + "/../config/config.json")[env];
+// const config = require(__dirname + '/../config/config.json')[env];
 var db = {};
 var sequelize;
 var customizeConfig = {
@@ -17,19 +17,21 @@ var customizeConfig = {
   query: {
     raw: true
   },
-  timezone: "+07:00"
+  timezone: "+07:00",
+  dialectOption: process.env.DB_SSL === "true" ? {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false
+    }
+  } : {}
 };
 sequelize = new Sequelize(process.env.DB_DATABASE_NAME, process.env.DB_USERNAME, process.env.DB_PASSWORD, customizeConfig);
 
 // if (config.use_env_variable) {
 //   sequelize = new Sequelize(process.env[config.use_env_variable], config);
 // } else {
-//   sequelize = new Sequelize(
-//     config.database,
-//     config.username,
-//     config.password,
-//     config
-//   );
+
+//   sequelize = new Sequelize(config.database, config.username, config.password, config);
 // }
 
 fs.readdirSync(__dirname).filter(function (file) {
